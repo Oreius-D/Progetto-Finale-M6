@@ -59,7 +59,7 @@ public class LifeController : MonoBehaviour
         isDead = true;
 
         // Disable enemy AI logic
-        var enemy = GetComponent<Enemy>();
+        var enemy = GetComponent<EnemyMovement>();
         if (enemy) enemy.enabled = false;
 
         // Disable collider to avoid further interactions

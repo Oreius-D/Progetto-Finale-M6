@@ -5,7 +5,7 @@ public class EnemyAnimation : MonoBehaviour
     // Reference to the Animator component, Sprite Renderer and enemy set in the inspector
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Enemy enemy;
+    [SerializeField] private EnemyMovement enemy;
 
     // Threshold to determine if the player is considered moving
     [SerializeField] private float movementThreshold = 0.001f;
@@ -23,7 +23,7 @@ public class EnemyAnimation : MonoBehaviour
     {
         if (!animator) animator = GetComponentInChildren<Animator>();
         if (!spriteRenderer) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        if (!enemy) enemy = GetComponent<Enemy>();
+        if (!enemy) enemy = GetComponent<EnemyMovement>();
     }
 
     // Update is called once per frame

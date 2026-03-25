@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Enemy : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
     // Reference to speed of the enemy. This can be set in the Unity Inspector.
     [SerializeField] private float speed = 2f;
