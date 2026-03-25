@@ -2,51 +2,67 @@ using UnityEngine;
 
 public class EnemyAnimation : MonoBehaviour
 {
-    [SerializeField] private Animator animator;      // Animator controlling enemy animations
-    [SerializeField] private SpriteRenderer sr;      // SpriteRenderer used to flip the sprite
+    // Reference to the Animator component, Sprite Renderer and enemy set in the inspector
+    [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Enemy enemy;
 
-    private Vector2 lastDir = Vector2.down;           // Last non zero movement direction
+    // Threshold to determine if the player is considered moving
+    [SerializeField] private float movementThreshold = 0.001f;
+    // Threshold to determine if the player is facing left or right for flipping the sprite
+    [SerializeField] private float flipThreshold = 0.1f;
+    // Zero and One thresholds for determining the dominant direction for animations
+    [SerializeField] private float zeroThreshold = 0f;
+    [SerializeField] private float oneThreshold = 1f;
 
-    /// <summary>
-    /// Updates animation parameters based on movement direction.
-    /// Should be called every frame by the enemy logic.
-    /// </summary>
-    public void UpdateAnimation(Vector2 direction)
+    // Last Direction the player was facing, used for idle animations
+    private Vector2 lastDirection = Vector2.down;
+
+    // Awake is called when the script instance is being loaded
+    private void Awake()
     {
-        // Check if the enemy is moving
-        bool isMoving = direction.sqrMagnitude > 0.01f;
+        if (!animator) animator = GetComponentInChildren<Animator>();
+        if (!spriteRenderer) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (!enemy) enemy = GetComponent<Enemy>();
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+        // Get the current movement direction from the Enemy component
+        Vector2 movementDirection = enemy ? enemy.Direction : Vector2.zero;
+        // Update the last direction if the enemy is moving
+        UpdateAnimation(movementDirection);
+
+    }
+
+    public void UpdateAnimation(Vector2 movementDirection)
+    {
+        // If the player is moving, update the last direction and set the animator parameters
+        var isMoving = movementDirection.sqrMagnitude > movementThreshold;
         animator.SetBool("IsMoving", isMoving);
 
-        // Store last valid direction to keep facing when idle
         if (isMoving)
-            lastDir = direction;
+            lastDirection = movementDirection;
 
-        // Flip sprite horizontally based on movement direction
-        if (lastDir.x > 0.01f)
-            sr.flipX = false;
-        else if (lastDir.x < -0.01f)
-            sr.flipX = true;
+        if (lastDirection.x > flipThreshold) spriteRenderer.flipX = false;
+        else if (lastDirection.x < -flipThreshold) spriteRenderer.flipX = true;
 
-        // If the blend tree only uses the right facing animation (1,0),
-        // we mirror it using sprite flipping
-        float x = Mathf.Abs(lastDir.x);
-        float y = lastDir.y;
+        float x = Mathf.Abs(lastDirection.x);
+        float y = lastDirection.y;
 
-        // Snap direction to 4 cardinal directions for consistency
+        // Set x and y parameters for the animator to control directional animations
         if (x > Mathf.Abs(y))
         {
-            // Horizontal movement
-            y = 0f;
-            x = 1f;
+            y = zeroThreshold;
+            x = oneThreshold;
         }
         else
         {
-            // Vertical movement
-            x = 0f;
+            x = zeroThreshold;
             y = Mathf.Sign(y);
         }
 
-        // Update blend tree parameters
         animator.SetFloat("X", x);
         animator.SetFloat("Y", y);
     }

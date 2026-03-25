@@ -30,8 +30,8 @@ public class Bullet : MonoBehaviour
     /// </summary>
     public void Init(Vector2 direction, float speed)
     {
-        // Play shooting sound effect
-        SoundFXManager.Instance.PlaySoundFXClip(shootSoundClip, transform, 1f);
+        // Play shooting sound effect. ToDo: Upgrade to pool + singleton SoundFXManager
+        //SoundFXManager.Instance.PlaySoundFXClip(shootSoundClip, transform, 1f);
 
         // Store normalized direction and speed
         _dir = direction.normalized;
