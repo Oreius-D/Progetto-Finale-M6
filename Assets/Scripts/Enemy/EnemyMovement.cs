@@ -70,4 +70,17 @@ public class EnemyMovement : MonoBehaviour
         }
 
     }
+
+    // On Enable is called when the object becomes enabled and active. We register this enemy with the EnemyManager to keep track of it.
+    private void OnEnable()
+    {
+        if (!enemyManager) enemyManager = GetComponentInParent<EnemyManager>();
+        enemyManager?.RegisterEnemy(this);
+    }
+
+    // On Disable is called when the object becomes disabled or inactive. We unregister this enemy from the EnemyManager to keep the list of active enemies accurate.
+    private void OnDisable()
+    {
+        enemyManager?.UnregisterEnemy(this);
+    }
 }

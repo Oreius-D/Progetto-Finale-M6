@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: weaponPrefab
       value: 
       objectReference: {fileID: 8462332673135957359, guid: 1f61bb5053c9e3f448890c0401e571f9, type: 3}
+    - target: {fileID: 1548365112309061468, guid: fd4dc60acf8bf524abac3d6cdeccf2c1, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: d4f060e1a1bde554e95d20eadc429ffc, type: 2}
     - target: {fileID: 4842268192017322934, guid: fd4dc60acf8bf524abac3d6cdeccf2c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -60,8 +64,32 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: ba8d68dea8ef92a40827f01b44647303, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1287274566610232080, guid: fd4dc60acf8bf524abac3d6cdeccf2c1, type: 3}
+    - {fileID: 1548365112309061468, guid: fd4dc60acf8bf524abac3d6cdeccf2c1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7507363457151266529, guid: fd4dc60acf8bf524abac3d6cdeccf2c1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3380942006770692283}
   m_SourcePrefab: {fileID: 100100000, guid: fd4dc60acf8bf524abac3d6cdeccf2c1, type: 3}
+--- !u!1 &4059732120396115329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7507363457151266529, guid: fd4dc60acf8bf524abac3d6cdeccf2c1, type: 3}
+  m_PrefabInstance: {fileID: 5798546781827220320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3380942006770692283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4059732120396115329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b2bf25ba93dd942951151bc170961c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: d4f060e1a1bde554e95d20eadc429ffc, type: 2}
+  destroyOnPickup: 1

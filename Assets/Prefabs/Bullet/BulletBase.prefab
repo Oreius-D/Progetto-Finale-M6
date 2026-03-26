@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8404741977570895935}
   - component: {fileID: 225008186755155962}
-  - component: {fileID: -6628133247865362550}
   - component: {fileID: 118169141679466477}
   - component: {fileID: 603817616752188266}
-  m_Layer: 6
+  - component: {fileID: -8034448454205366178}
+  m_Layer: 9
   m_Name: BulletBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,21 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-6628133247865362550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3704843280369664842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 856143a8b6e985849ac075a2dbaeeb2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifetime: 1
-  damage: 2
-  shootSoundClip: {fileID: 8300000, guid: e4f25d0d1da95d149a92e9f1b54a60ea, type: 3}
 --- !u!50 &118169141679466477
 Rigidbody2D:
   serializedVersion: 4
@@ -164,3 +149,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-8034448454205366178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3704843280369664842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5c6f457d98b6d40b85e8c17839ada7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 1
+  damage: 1

@@ -15,8 +15,7 @@ GameObject:
   - component: {fileID: -9035124807329409584}
   - component: {fileID: 707988262985298511}
   - component: {fileID: -1788357927597564718}
-  - component: {fileID: -897003521778902099}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: EnemyBase
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -113,9 +112,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &1488515439534337607
 CircleCollider2D:
@@ -186,7 +185,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  sr: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  enemy: {fileID: 0}
+  movementThreshold: 0.001
+  flipThreshold: 0.1
+  zeroThreshold: 0
+  oneThreshold: 1
 --- !u!114 &-1788357927597564718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,16 +206,3 @@ MonoBehaviour:
   speed: 2
   movementMagnitude: 0.0001
   damage: 1
---- !u!114 &-897003521778902099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2834033794404355837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7527ffdb9674eb4794b105d1c3fc2cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}

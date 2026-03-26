@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4842268192017322934}
   - component: {fileID: 8141507292883636647}
   - component: {fileID: 790183682961815828}
-  - component: {fileID: 1287274566610232080}
+  - component: {fileID: 1548365112309061468}
   m_Layer: 0
   m_Name: PickUpBase
   m_TagString: Untagged
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &1287274566610232080
+--- !u!114 &1548365112309061468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,8 +130,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7507363457151266529}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94f31df4c3af70f439154cac5e452aff, type: 3}
+  m_Script: {fileID: 11500000, guid: 92b2bf25ba93dd942951151bc170961c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 0}
-  attachPoint: {fileID: 0}
+  weapon: {fileID: 0}
+  destroyOnPickup: 1
