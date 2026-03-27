@@ -19,3 +19,4 @@ MonoBehaviour:
   projectileSpeed: 9
   projectileDamage: 3
   fireSound: {fileID: 8300000, guid: e4f25d0d1da95d149a92e9f1b54a60ea, type: 3}
+  icon: {fileID: 21300000, guid: 944e459d8c5f88148a37a372ce0c98be, type: 3}

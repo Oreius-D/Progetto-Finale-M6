@@ -43,7 +43,7 @@ public class WeaponController : MonoBehaviour
     public void Equip(WeaponDefinition weapon)
     {
         CurrentWeapon = weapon;
-        GameEvents.OnWeaponChanged(weapon.WeaponName); // utile per UI weapon name/icon dopo
+        GameEvents.OnWeaponChanged(weapon.Icon); // utile per UI weapon name/icon dopo
     }
 
     private void TryAutoFire()

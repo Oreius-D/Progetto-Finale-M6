@@ -24,6 +24,10 @@ public class WeaponDefinition : ScriptableObject
     [Header("Audio")]
     [SerializeField] private AudioClip fireSound;
 
+    // Sprite icon for UI render
+    [Header("Sprite")]
+    [SerializeField] private Sprite icon;
+
     public string WeaponName => weaponName;
     public float AutofireRate => autofireRate;
     public float Range => range;
@@ -31,4 +35,5 @@ public class WeaponDefinition : ScriptableObject
     public float ProjectileSpeed => projectileSpeed;
     public int ProjectileDamage => projectileDamage;
     public AudioClip FireSound => fireSound;
+    public Sprite Icon => icon;
 }
