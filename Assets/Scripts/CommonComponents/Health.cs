@@ -12,9 +12,6 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] private Animator animator; // Animator to trigger death animation (optional)
     [SerializeField] private string deathBool = "IsDead"; // Name of the bool parameter in the Animator to trigger death animation
 
-    [Header("Disable On Death")]
-    [SerializeField] private MonoBehaviour[] disableBehaviours; // List of MonoBehaviours to disable when the object dies (e.g., movement, shooting scripts)
-
     // Current health value, max health, and death state
     public int CurrentHealth { get; private set; }
 
@@ -78,12 +75,6 @@ public class Health : MonoBehaviour, IDamageable
         if (IsDead) return;
         // Set death state to true
         IsDead = true;
-
-        // Disable specified behaviours (e.g., movement, shooting) when the object dies
-        if (disableBehaviours != null)
-            foreach (var b in disableBehaviours)
-                if (b) b.enabled = false;
-
         // Disable the collider to prevent further interactions (e.g., damage, collisions) after death
         if (col) col.enabled = false;
         // Trigger death animation by setting the specified bool parameter in the Animator

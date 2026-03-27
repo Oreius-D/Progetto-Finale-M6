@@ -7,6 +7,12 @@ public class EnemyMovement : MonoBehaviour
 {
     // Reference to speed of the enemy. This can be set in the Unity Inspector.
     [SerializeField] private float speed = 2f;
+    // Value to control magnitude of the enemy's movement. This is calculated in FixedUpdate based on the direction and speed.
+    [SerializeField] private float movementMagnitude = 0.0001f;
+    // Enemy damage value, which can be set in the Unity Inspector. This value is used when the enemy collides with the player to determine how much damage to deal.
+    [SerializeField] private int damage = 1;
+    // Health component, which can be set by unity inspector. Used to stop enemies after they are dead.
+    [SerializeField] private Health health;
 
     // Public property for enemy direction, which can be set by other scripts (e.g., EnemyManager).
     public Vector2 Direction { get; set; }
@@ -19,12 +25,6 @@ public class EnemyMovement : MonoBehaviour
     private EnemyManager enemyManager;
     private Transform playerTransform;
 
-    // Value to control magnitude of the enemy's movement. This is calculated in FixedUpdate based on the direction and speed.
-    [SerializeField] private float movementMagnitude = 0.0001f;
-
-    // Enemy damage value, which can be set in the Unity Inspector. This value is used when the enemy collides with the player to determine how much damage to deal.
-    [SerializeField] private int damage = 1;
-
     // Awake is called when the script instance is being loaded. It initializes references to components and the player.
     private void Awake()
     {
@@ -34,11 +34,22 @@ public class EnemyMovement : MonoBehaviour
 
         enemyManager = GetComponentInParent<EnemyManager>();
         playerTransform = enemyManager ? enemyManager.Player : null;
+
+        if(!health) health = GetComponent<Health>();
     }
 
     // FixedUpdate is called at a fixed interval and is used for physics updates.
     private void FixedUpdate()
     {
+        // Stop Movement if dead
+        if (health != null && health.IsDead)
+        {
+            Direction = Vector2.zero;
+            rb.velocity = Vector2.zero;
+            return;
+        }
+
+
         // If there is no player transform, we cannot move towards the player, so we set the direction to zero and return early.
         if (!playerTransform)
         {

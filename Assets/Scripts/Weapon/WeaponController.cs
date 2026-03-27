@@ -34,7 +34,10 @@ public class WeaponController : MonoBehaviour
         if (startingWeapon == null || enemyManager == null) return;
         // Check if the weapon can fire based on the autofire rate and if the fire button is being held down.
         if (Time.time >= nextFireTime)
+        {
+            Debug.Log("Trying to auto fire...");
             TryAutoFire();
+        }
     }
 
     public void Equip(WeaponDefinition weapon)
@@ -45,12 +48,15 @@ public class WeaponController : MonoBehaviour
 
     private void TryAutoFire()
     {
+        Debug.Log("Trying to auto fire 2...");
         Vector2 origin = muzzle ? (Vector2)muzzle.position : (Vector2)transform.position;
 
+        Debug.Log("Finding closest enemy...");
         EnemyMovement target = enemyManager.GetClosestEnemy(origin, CurrentWeapon.Range);
         if (!target) return;
 
         nextFireTime = Time.time + 1f / Mathf.Max(0.01f, CurrentWeapon.AutofireRate);
+        Debug.Log($"Auto firing at target: {target.gameObject.name} with weapon: {CurrentWeapon.WeaponName}");
 
         Vector2 targetPos = target.transform.position;
         Vector2 dir = (targetPos - origin).normalized;
@@ -63,10 +69,14 @@ public class WeaponController : MonoBehaviour
 
     private void SpawnBullet(Vector2 origin, Vector2 dir)
     {
+        Debug.Log("Spawning bullet...");
         if (!CurrentWeapon.ProjectilePrefab) return;
+        Debug.Log($"Instantiating bullet prefab: {CurrentWeapon.ProjectilePrefab.name} at position: {origin + dir * 0.3f}");
 
         Bullet b = Instantiate(CurrentWeapon.ProjectilePrefab, origin + dir * 0.3f, Quaternion.identity);
+        Debug.Log($"Setting bullet damage: {CurrentWeapon.ProjectileDamage} and speed: {CurrentWeapon.ProjectileSpeed}");
         b.SetDamage(CurrentWeapon.ProjectileDamage);
+        Debug.Log($"Initializing bullet with direction: {dir} and speed: {CurrentWeapon.ProjectileSpeed}");
         b.Init(dir, CurrentWeapon.ProjectileSpeed);
     }
 }

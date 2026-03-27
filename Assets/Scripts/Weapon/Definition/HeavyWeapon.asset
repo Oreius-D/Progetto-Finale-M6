@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: Crossbow
   autofireRate: 1
   range: 15
-  projectilePrefab: {fileID: -8034448454205366178, guid: 70faaee0d02460646afb0e4306b75e45, type: 3}
+  projectilePrefab: {fileID: 7172004738798686089, guid: 70faaee0d02460646afb0e4306b75e45, type: 3}
   projectileSpeed: 9
   projectileDamage: 3
   fireSound: {fileID: 8300000, guid: e4f25d0d1da95d149a92e9f1b54a60ea, type: 3}

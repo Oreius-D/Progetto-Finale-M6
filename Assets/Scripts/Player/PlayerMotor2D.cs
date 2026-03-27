@@ -10,6 +10,8 @@ public class PlayerMotor2D : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     // Player input reference
     [SerializeField] private PlayerInput playerInput;
+    // Health reference
+    [SerializeField] private Health health;
 
     // 2D Direction
     public Vector2 moveDirection { get; private set; }
@@ -22,6 +24,7 @@ public class PlayerMotor2D : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         if(!playerInput) playerInput = GetComponent<PlayerInput>();
+        if(!health) health = GetComponent<Health>();
     }
 
     //Update is called once per frame
@@ -34,6 +37,13 @@ public class PlayerMotor2D : MonoBehaviour
     //FixedUpdate is called at a fixed interval and is independent of frame rate, used here for physics calculations
     private void FixedUpdate()
     {
+        // Death handler
+        if (health && health.IsDead)
+        {
+            rb.velocity = Vector2.zero;
+            return; // niente MovePosition
+        }
+
         // Apply movement to the Rigidbody2D based on the moveDirection and moveSpeed
         Vector2 newPosition = rb.position + (moveDirection * moveSpeed * Time.fixedDeltaTime);
         rb.MovePosition(newPosition);
