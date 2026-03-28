@@ -20,6 +20,11 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
         // Set the instance to this singleton and make it persist across scenes.
         Instance = (T)(MonoBehaviour)this;
+
+        // IMPORTANT: must be root for DontDestroyOnLoad
+        if (transform.parent != null)
+            transform.SetParent(null);
+
         //DontDestroyOnLoad makes sure that the singleton is not destroyed when loading a new scene.
         DontDestroyOnLoad(gameObject);
     }
@@ -29,8 +34,6 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         // If this instance is the current singleton instance, set it to null when destroyed.
         if (Instance == this)
-        {
             Instance = null;
-        }
     }
 }

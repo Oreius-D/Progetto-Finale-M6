@@ -19,6 +19,18 @@ public class PauseManager : MonoBehaviour
         ApplyPause(false);
     }
 
+    private void OnEnable()
+    {
+        GameEvents.PlayerDied += ShowLoseScreen;
+        GameEvents.victory += ShowWinScreen;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.PlayerDied -= ShowLoseScreen;
+        GameEvents.victory -= ShowWinScreen;
+    }
+
     void Update()
     {
         // If an end screen is active, ignore ESC.
@@ -96,6 +108,11 @@ public class PauseManager : MonoBehaviour
         isEndScreenActive = false;
         ShowNone();
         ApplyPause(false);
+
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         SceneManager.LoadScene("MainMenu");
     }
 

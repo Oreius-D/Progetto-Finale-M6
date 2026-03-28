@@ -18,8 +18,6 @@ public class PlayerHealthBridge : MonoBehaviour
         if (!health) return;
         // Subscribe to health change and death events
         health.Changed += OnChanged;
-        // Subscribe to the Died event to trigger player death logic
-        health.Died += OnDied;
         // Trigger an initial health change event to update any UI or systems that rely on the player's health status at the start
         OnChanged();
     }
@@ -31,8 +29,6 @@ public class PlayerHealthBridge : MonoBehaviour
         if (!health) return;
         // Unsubscribe from health change and death events
         health.Changed -= OnChanged;
-        // Unsubscribe from the Died event to prevent triggering player death logic when the component is disabled
-        health.Died -= OnDied;
     }
 
     // This method is called whenever the health changes, and it triggers the OnHealthChanged event in the GameEvents system to notify other parts of the game about the new health status.
@@ -40,12 +36,5 @@ public class PlayerHealthBridge : MonoBehaviour
     {
         // Trigger the health changed event with the current health and maximum health values
         GameEvents.OnHealthChanged(health.CurrentHealth, health.MaxHealth);
-    }
-
-    // This method is called when the player dies, and it triggers the OnPlayerDied event in the GameEvents system to notify other parts of the game about the player's death.
-    private void OnDied()
-    {
-        // Trigger the player died event to notify other systems that the player has died
-        GameEvents.OnPlayerDied();
     }
 }

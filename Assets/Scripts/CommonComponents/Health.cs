@@ -11,6 +11,7 @@ public class Health : MonoBehaviour, IDamageable
     [Header("Death")]
     [SerializeField] private Animator animator; // Animator to trigger death animation (optional)
     [SerializeField] private string deathBool = "IsDead"; // Name of the bool parameter in the Animator to trigger death animation
+    [SerializeField] private bool isPlayer = false; // Flag to check if player, so we can postpone lose screen after death animation
 
     // Current health value, max health, and death state
     public int CurrentHealth { get; private set; }
@@ -87,6 +88,9 @@ public class Health : MonoBehaviour, IDamageable
     // This method can be called as an animation event at the end of the death animation to destroy the GameObject if destroyOnDeath is true
     public void OnDeathAnimFinished()
     {
+        if (isPlayer)
+            GameEvents.OnPlayerDied();
+
         if (destroyOnDeath)
             Destroy(gameObject);
 

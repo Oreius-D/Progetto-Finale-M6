@@ -12,7 +12,8 @@ public static class GameEvents
     public static event Action<Sprite> weaponChanged; // Event for when the weapon changes, with the new weapon name as a parameter.
 
     // Strctly UI Events
-    public static event Action<int> enemyKill; // Event for when an enemy is killed.
+    public static event Action<int, int> enemyCountChanged; // killed, total
+    public static event Action victory;
 
     //Todo ADD Dash Events, for when the player dashes, and when the dash is ready again.
 
@@ -20,5 +21,6 @@ public static class GameEvents
     public static void OnHealthChanged(int currentHealth, int maxHealth) => healthChanged?.Invoke(currentHealth, maxHealth);
     public static void OnPlayerDied() => PlayerDied?.Invoke();
     public static void OnWeaponChanged(Sprite newWeapon) => weaponChanged?.Invoke(newWeapon);
-    public static void OnEnemyKilled(int totalEnemies) => enemyKill?.Invoke(totalEnemies);
+    public static void OnEnemyCountChanged(int killed, int total) => enemyCountChanged?.Invoke(killed, total);
+    public static void OnVictory() => victory?.Invoke();
 }

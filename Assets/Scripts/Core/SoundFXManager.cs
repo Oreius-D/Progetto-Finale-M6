@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundFXManager : Singleton<SoundFXManager>
 {
@@ -20,10 +21,27 @@ public class SoundFXManager : Singleton<SoundFXManager>
         if (!audioPool) audioPool = GetComponentInChildren<AudioPool>(); // Attempt to find an AudioPool component in the children of this GameObject.
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (!audioPool)
+            audioPool = GetComponentInChildren<AudioPool>(true);
+    }
+
     // Method to play a sound effect at a specific position in the world.
     public void PlaySoundEffect(AudioClip clip, Vector3 position)
     {
-        if(!clip || !audioPool) return; // If the clip or audio pool is not set, exit the method to avoid errors.
+        if (!audioPool) audioPool = GetComponentInChildren<AudioPool>(true); // Try get audiopool on the fly
+        if (!clip || !audioPool) return; // If the clip or audio pool is not set, exit the method to avoid errors.
 
         float randomPitch = Random.Range(pitchRange.x, pitchRange.y); // Generate a random pitch within the specified range for variety.
         audioPool.Play(clip, position, defaultVolume, randomPitch); // Use the audio pool to play the clip at the specified position with the default volume and random pitch.
