@@ -18,7 +18,7 @@ public class SoundFXManager : Singleton<SoundFXManager>
     protected override void Awake()
     {
         base.Awake(); // Call the Awake method of the base Singleton class to ensure proper initialization.
-        if (!audioPool) audioPool = GetComponentInChildren<AudioPool>(); // Attempt to find an AudioPool component in the children of this GameObject.
+        if (!audioPool) audioPool = GetComponentInChildren<AudioPool>(true); // Attempt to find an AudioPool component in the children of this GameObject.
     }
 
     private void OnEnable()
