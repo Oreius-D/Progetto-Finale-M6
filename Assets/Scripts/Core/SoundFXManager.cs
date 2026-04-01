@@ -23,16 +23,19 @@ public class SoundFXManager : Singleton<SoundFXManager>
 
     private void OnEnable()
     {
+        // Subscribe to the sceneLoaded event of the SceneManager to ensure that we can find the AudioPool component when a new scene is loaded.
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
+        // Unsubscribe from the sceneLoaded event to prevent potential memory leaks or unintended behavior when this object is disabled or destroyed.
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // When a new scene is loaded, attempt to find the AudioPool component again. This is important because the AudioPool might be part of the new scene and we need to ensure we have a reference to it.
         if (!audioPool)
             audioPool = GetComponentInChildren<AudioPool>(true);
     }

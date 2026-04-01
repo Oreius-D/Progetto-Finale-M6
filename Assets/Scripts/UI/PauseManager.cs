@@ -21,12 +21,14 @@ public class PauseManager : MonoBehaviour
 
     private void OnEnable()
     {
+        // Subscribe to game events for showing end screens.
         GameEvents.PlayerDied += ShowLoseScreen;
         GameEvents.victory += ShowWinScreen;
     }
 
     private void OnDisable()
     {
+        // Unsubscribe to prevent memory leaks.
         GameEvents.PlayerDied -= ShowLoseScreen;
         GameEvents.victory -= ShowWinScreen;
     }
@@ -36,6 +38,7 @@ public class PauseManager : MonoBehaviour
         // If an end screen is active, ignore ESC.
         if (isEndScreenActive) return;
 
+        // Toggle pause on ESC.
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SetPaused(!IsPaused);
