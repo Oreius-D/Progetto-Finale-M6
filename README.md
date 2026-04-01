@@ -26,14 +26,14 @@ Progetto Finale Modulo M6
   - Aggiunta ponte per il componente condiviso della vita
   
  - Enemy
-  - Rework componente gestione della animazioni
-  - Aggiunto componente per contare i nemici presenti e uccisi per UI
-  - Aggiunto componente per la gestione di tutti i nemici
-  - Aggiunto script per movimento del singolo nemico
+   - Rework componente gestione della animazioni
+   - Aggiunto componente per contare i nemici presenti e uccisi per UI
+   - Aggiunto componente per la gestione di tutti i nemici
+   - Aggiunto script per movimento del singolo nemico
 
  - Weapon
-  - L'arma raccolta non viene più sovrapposta al player, ma è mostrata nell'UI
-  - Aggiunto WeaponController che si occupa di gestire il comportamento delle armi
-  - Aggiunto WeaponPickup che si occupa solo di raccogliere l'arma ed equipaggiarla
-  - Rework script per generazione proiettile
-  - Aggiunto script WeaponDefinition usato per creare scriptable Objects che adesso definiscono le caratteristiche di un arma.
+   - L'arma raccolta non viene più sovrapposta al player, ma è mostrata nell'UI
+   - Aggiunto WeaponController che si occupa di gestire il comportamento delle armi
+   - Aggiunto WeaponPickup che si occupa solo di raccogliere l'arma ed equipaggiarla
+   - Rework script per generazione proiettile
+   - Aggiunto script WeaponDefinition usato per creare scriptable Objects che adesso definiscono le caratteristiche di un arma.
