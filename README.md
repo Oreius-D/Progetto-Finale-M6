@@ -1,8 +1,14 @@
 # Progetto-Finale-M6
-Progetto Finale Modulo M6
+Progetto Finale Modulo M6. Il progetto è un rework del vecchio progetto per M3.
+
+# Attenzione: Avviare il gioco dalla scena MainMenu e da lì far partire il livello. Così da garantire una corretta inizializzazione della pool per i suoni di sparo del gioco
 
 # Changelog
 
+- Camera
+  - Rimosso script per seguire il player
+  - Aggiunta Cinemachine e Pixel perfect camera
+     
 - Core
   - Aggiunta gestione degli eventi
   - Aggiunto gestore del flow di gioco
