@@ -3,43 +3,37 @@ Progetto Finale Modulo M6
 
 # Changelog
 
-23/03/2026
-- Introduzione Notazione [Obsolete]. Questa sta ad indicare precedenti cartelle che non vengono più utilizzati, l'intenzione è di rimuoverli a fine refactor, ma nel caso qualcuno dovesse sfuggire, fare riferimento a questa definizione
+- Core
+  - Aggiunta gestione degli eventi
+  - Aggiunto gestore del flow di gioco
+  - Aggiunto singleton per gestione del flow e audio manager
+  - Aggiunto audio manager per suoni in gioco con audio pooling
+  - Aggiunta contratti IDamageable e IInteractable per centralizzare la gestione dei danni e interazioni
 
-- Introduzione della Pixel Perfect Camera 2D e cinemachine al fine di garantire maggiore fluidità è risolvere la comparsa di quelle linee blu durante il gioco
+- CommonComponents
+  - Aggiunto componente centralizzato per la gestione della vita.
+    
+- UI
+  - Aggiunto Menu iniziale
+  - Aggiunto menu di pausa
+  - Aggiunta schermata di vittoria (Si visualizza quando tutti i nemici vengono eliminati)
+  - Aggiunta schermata di sconfitta (Si visualizza quando il player muore)
+  - Aggiunta UI di gioco che mostra l'arma equipaggiata e i nemici sconfitti.
 
-23/03/2026
-- Introduzione Notazione [Old]. Questa sta ad indicare precedenti script che non vengono più utilizzati e sono stati rinominati per non interferire con in nuovi riferimenti, l'intenzione è di rimuoverli a fine refactor, ma nel caso qualcuno dovesse sfuggire, fare riferimento a questa definizione.
+- Player
+  - Rework componente gestione della animazioni
+  - Separato l'input del player dal movimento effettivo
+  - Aggiunta ponte per il componente condiviso della vita
+  
+ - Enemy
+  - Rework componente gestione della animazioni
+  - Aggiunto componente per contare i nemici presenti e uccisi per UI
+  - Aggiunto componente per la gestione di tutti i nemici
+  - Aggiunto script per movimento del singolo nemico
 
--  Aggiunta scripts "Core" al fine di centralizzare meccaniche tra le cui:
-  - Sound FX Manager, gestisce la riproduzione dei suoni tramite singleton che referenzia l' AudioPool.
-  - Singleton, classe template per tutti i singleton del gioco.
-  - Game Flow Manager, classe per la gestione del flusso del gioco tramite singleton.
-  - Game Events, classe statica che contiene tutti gli eventi del gioco.
-  - Audio Pool, classe per pooling degli audio, così da non creare e distruggere sempre tutti i suoni.
-  - Interfacce IDamageable e IInteractable, per gestire l'infliggere il danno e interagire con gli oggetti in scena
-
--  Aggiunta scripts "Common Components" per gestire le componenti comuni tra i prefab:
-  - Health, classe per gestire la logica di vita, danno, cura e morte.
-
--  Aggiunta scripts "Player" al fine di centralizzare meccaniche tra le cui:
-  - Player Animation, classe che gestisce l'animazione del player.
-  - Player Health Bridge, classe che fa da ponte tra Health e player.
-  - Player Input, classe che gestisce gli input del giocatore.
-  - Player Motor 2D, classe che gestisce il movimento 2D del player.
-
--  Aggiunta scripts "Enemy" al fine di centralizzare meccaniche tra le cui:
-  - Enemy Manager, classe che gestisce tutti i nemici.
-  - Enemy Movement, classe che muove i nemici verso il player.
-  - Enemy Animation, classe che gestisce l'animazione dei nemici
-
--  File [Obsolete] o rimossi alla data:
-  - [Obsolete]
-    - Cartella camera che contiene CameraFollow.
-    - Cartella Controllers che contiene:
-      - LifeController, vecchio gestore della vita dei nemici.
-      - Old Player Controller, vecchio gestore del player (monolitico).
-    - Cartella Sound che contiene:
-      - Game Music Manager, vecchio gestore della Musica in background.
-      - Old Sound FX Manager, vecchio gestore dei suoni, creava e distruggeva ad ogni colpo.
-  - Player Health Bridge, classe che fa da ponte tra Health e player
+ - Weapon
+  - L'arma raccolta non viene più sovrapposta al player, ma è mostrata nell'UI
+  - Aggiunto WeaponController che si occupa di gestire il comportamento delle armi
+  - Aggiunto WeaponPickup che si occupa solo di raccogliere l'arma ed equipaggiarla
+  - Rework script per generazione proiettile
+  - Aggiunto script WeaponDefinition usato per creare scriptable Objects che adesso definiscono le caratteristiche di un arma.
